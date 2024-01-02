@@ -16,7 +16,7 @@ if ($output -ne "") {
 }
 
 #新しい設定
-echo "adding ${wsl_addr}:3000 "
+echo "adding ${wsl_addr}:${port} "
 netsh interface portproxy add v4tov4 listenport=${port} listenaddress=* connectport=${port} connectaddress=${wsl_addr}
 New-NetFireWallRule -DisplayName 'wsl2 portforward' -Direction Outbound -LocalPort $ports_a -Action Allow -Protocol TCP
 New-NetFireWallRule -DisplayName 'wsl2 portforward' -Direction Inbound -LocalPort $ports_a -Action Allow -Protocol TCP
